@@ -11,7 +11,6 @@ public class TestController {
 
     @Autowired
     private TestService testService;
-
     @RequestMapping("/query")
     public void test() {
 
