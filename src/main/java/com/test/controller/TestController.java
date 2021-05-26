@@ -13,7 +13,6 @@ public class TestController {
     private TestService testService;
     @RequestMapping("/query")
     public void test() {
-
         Object object = testService.query();
         System.out.println(object);
     }
