@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.TestDao">
+    <!-- 批量插入，可插入全部字段，包括ID -->
+    <insert id="batchAddPerson" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into  person ( `person_id`, `person_name`, `person_sex`, `person_age`,`person_work`)
+        values
+        <foreach collection="personList" index="index" item="item" separator=",">
+           (ifnull(#{item.personId,jdbcType=BIGINT}, 0),
+            ifnull(#{item.personName,jdbcType=VARCHAR}, ''),
+            ifnull(#{item.personSex,jdbcType=TINYINT}, 0),
+            ifnull(#{item.personAge,jdbcType=TINYINT}, 0),
+            ifnull(#{item.personWork,jdbcType=TINYINT}, 0)
+            )
+        </foreach>
+    </insert>
+  </mapper>
