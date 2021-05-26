@@ -19,6 +19,12 @@ public interface TestDao {
     @Update("update person set  problem = '12测试1122111' where person_id=1164437474429380992 ; ")
     public int updatePerson();
 
+    @Update("update person set  person_work=2  where problem like '%发%'  ")
+    public int updatePerson1();
+
+    @Update("update person set  person_work=3  where problem like '%发%'  ")
+    public int updatePerson2();
+
     /**
      * 批量插入人员信息
      * @param personList

@@ -24,15 +24,22 @@ public class TestService {
 
     public void startInsert() {
         List<Person> personList = new ArrayList<Person>();
+        
+        String[] random = new String[] { "的顶峰的反对发射点发射点发", "的幅度萨芬撒旦发射点发射点发", "的反对发射点发射点发射点发生飞洒", "打发士大夫的撒旦发生啊发射点发射点", "d打法十士大夫撒旦发生发射点发射点", "的发生发射点发生发射点发生",
+                "的发射点发射点方式打发士大夫", "对方防守对方的反对大幅度反对法", "大幅度反对法啊范德萨发到付", "的犯得上反对法大幅度" };
+        
         long l = 0L;
         for (;;) {
             for (;;) {
                 l++;
-                Person person = new Person(IdWorkerUtil.getId(), "gzr", (byte) 1, (byte) 1, (byte) 1, "");
+                int i = (int) (l % 10);
+                Person person = new Person(IdWorkerUtil.getId(), "gzr", (byte) 1, (byte) 1, (byte) 1, random[i]);
                 personList.add(person);
                 if (l == 1000l) {
-                    batchAddPerson(personList);
+                    int m = batchAddPerson(personList);
+                    System.out.println(m);
                     personList.clear();
+                    l = 0;
                     break;
                 }
             }
@@ -46,9 +53,8 @@ public class TestService {
 
     @Transactional(rollbackFor = { RuntimeException.class, Exception.class, Error.class })
     public void updateTest() throws InterruptedException {
-        testDao.updatePerson();
-        Thread.sleep(10000);
-        testDao.updateTest();
+        testDao.updatePerson1();
+        testDao.updatePerson2();
     }
 
     public void testDbLock() {
