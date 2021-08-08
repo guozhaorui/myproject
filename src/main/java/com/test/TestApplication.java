@@ -2,6 +2,7 @@ package com.test;
 
 import javax.sql.DataSource;
 
+import com.test.start.AppTaskServiceFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,5 +54,6 @@ public class TestApplication {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(TestApplication.class, args);
+        AppTaskServiceFactory.get().startTask();
     }
 }
