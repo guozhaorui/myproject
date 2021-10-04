@@ -217,8 +217,8 @@ public class OmsRedis implements ICacher {
         return 0;
     }
 
-
-    private Jedis get() {
+    @Override
+    public Jedis get() {
         if (!this.isInit) {
             synchronized (__LOCK__) {
                 if (!this.isInit) {

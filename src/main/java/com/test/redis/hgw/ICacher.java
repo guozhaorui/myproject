@@ -4,6 +4,8 @@ package com.test.redis.hgw;
  * Copyright(C) 2017 Hangzhou Differsoft Co., Ltd. All rights reserved.
  */
 
+import redis.clients.jedis.Jedis;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -241,4 +243,7 @@ public interface ICacher {
      * @return 是否成功设置 1 成功；0 失败
      */
     long setExpire(String cacheKey, int seconds);
+
+
+    Jedis get();
 }

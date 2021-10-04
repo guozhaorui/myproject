@@ -1,16 +1,16 @@
 package com.test.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.test.aop.MyTransactional;
 import com.test.dao.TestDao;
 import com.test.model.Person;
 import com.test.task.MyTask;
 import com.test.util.id.IdWorkerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TestService {
@@ -24,13 +24,13 @@ public class TestService {
 
     public void startInsert() {
         List<Person> personList = new ArrayList<Person>();
-        
-        String[] random = new String[] { "的顶峰的反对发射点发射点发", "的幅度萨芬撒旦发射点发射点发", "的反对发射点发射点发射点发生飞洒", "打发士大夫的撒旦发生啊发射点发射点", "d打法十士大夫撒旦发生发射点发射点", "的发生发射点发生发射点发生",
-                "的发射点发射点方式打发士大夫", "对方防守对方的反对大幅度反对法", "大幅度反对法啊范德萨发到付", "的犯得上反对法大幅度" };
-        
+
+        String[] random = new String[]{"的顶峰的反对发射点发射点发", "的幅度萨芬撒旦发射点发射点发", "的反对发射点发射点发射点发生飞洒", "打发士大夫的撒旦发生啊发射点发射点", "d打法十士大夫撒旦发生发射点发射点", "的发生发射点发生发射点发生",
+                "的发射点发射点方式打发士大夫", "对方防守对方的反对大幅度反对法", "大幅度反对法啊范德萨发到付", "的犯得上反对法大幅度"};
+
         long l = 0L;
-        for (;;) {
-            for (;;) {
+        for (; ; ) {
+            for (; ; ) {
                 l++;
                 int i = (int) (l % 10);
                 Person person = new Person(IdWorkerUtil.getId(), "gzr", (byte) 1, (byte) 1, (byte) 1, random[i]);
@@ -51,7 +51,16 @@ public class TestService {
     }
 
 
-    @Transactional(rollbackFor = { RuntimeException.class, Exception.class, Error.class })
+    @MyTransactional
+    public void test() {
+        testDao.updatePerson1();
+
+        int m = 8/0;
+    }
+
+
+
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class, Error.class})
     public void updateTest() throws InterruptedException {
         testDao.updatePerson1();
         testDao.updatePerson2();

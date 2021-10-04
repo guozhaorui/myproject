@@ -1,3 +1,4 @@
+/*
 package com.test.redis;
 
 import org.slf4j.Logger;
@@ -13,25 +14,31 @@ import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 
+*/
 /**
  * @param <K>
  * @param <V>
  * @author CaiYH
  * @desc redis操作基类
  * @since 2018年1月4日 下午4:22:39
- */
+ *//*
+
 public abstract class BaseDfRedisOperationsImpl<K, V> implements DfRedisOperations<K, V> {
 
-    /**
+    */
+/**
      * 日志
-     **/
+     **//*
+
     private final static Logger LOG = LoggerFactory.getLogger(BaseDfRedisOperationsImpl.class);
 
-    /**
+    */
+/**
      * 子类重写template
      *
      * @return
-     */
+     *//*
+
     protected abstract RedisTemplate<K, V> getOperationRedisTemplate();
 
     @Override
@@ -188,7 +195,9 @@ public abstract class BaseDfRedisOperationsImpl<K, V> implements DfRedisOperatio
         RedisAtomicLong entityIdCounter = new RedisAtomicLong(key, redisTemplate.getConnectionFactory());
         Long result = entityIdCounter.getAndAdd(increment) + increment;
 
-        /** 初始设置过期时间 **/
+        */
+/** 初始设置过期时间 **//*
+
         if (null == result || result.longValue() == 0) {
             if (liveTime > 0) {
                 entityIdCounter.expire(liveTime, TimeUnit.SECONDS);
@@ -314,3 +323,4 @@ public abstract class BaseDfRedisOperationsImpl<K, V> implements DfRedisOperatio
         getOperationRedisTemplate().discard();
     }
 }
+*/
